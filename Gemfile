@@ -7,7 +7,8 @@ gem 'rails', '3.2.9'
 
 gem 'pg'
 gem 'savon'
-
+gem 'nokogiri'
+gem 'rspec'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,6 +20,17 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'debugger'
+  gem 'ruby-debug-base19x', '~> 0.11.30.pre10'
+  gem 'ruby-debug-ide'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'rspec-on-rails-matchers'
 end
 
 gem 'jquery-rails'
