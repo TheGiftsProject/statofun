@@ -14,7 +14,7 @@ module TelofunApi
     end
     reponse.body
     doc = Nokogiri::XML(reponse.body)
-    debugger
+
   end
 
 end
