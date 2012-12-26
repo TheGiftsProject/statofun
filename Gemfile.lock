@@ -38,7 +38,6 @@ GEM
     akami (1.2.0)
       gyoku (>= 0.4.0)
       nokogiri (>= 1.4.0)
-    archive-tar-minitar (0.5.2)
     arel (3.0.2)
     awesome_print (1.1.0)
     builder (3.0.4)
@@ -121,6 +120,7 @@ GEM
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
+<<<<<<< HEAD
     ruby-debug-base19 (0.11.25)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -136,6 +136,8 @@ GEM
       ruby-debug-base19 (>= 0.11.19)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
+=======
+>>>>>>> more work
     sass (3.2.4)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -175,15 +177,21 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   jquery-rails
+<<<<<<< HEAD
   linecache19!
+=======
+>>>>>>> more work
   nokogiri
   pg
   rails (= 3.2.9)
   rspec
   rspec-on-rails-matchers
   rspec-rails
+<<<<<<< HEAD
   ruby-debug-base19x (~> 0.11.30.pre4)
   ruby-debug19
+=======
+>>>>>>> more work
   sass-rails (~> 3.2.3)
   savon
   uglifier (>= 1.0.3)
