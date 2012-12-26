@@ -15,23 +15,25 @@ ActiveRecord::Schema.define(:version => 20121226162504) do
 
   create_table "states", :force => true do |t|
     t.integer  "station_id"
-    t.boolean  "active",          :null => false
-    t.integer  "available_bikes", :null => false
-    t.integer  "available_docks", :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.boolean  "active",          :default => false, :null => false
+    t.integer  "available_bikes", :default => 0,     :null => false
+    t.integer  "available_docks", :default => 0,     :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "stations", :force => true do |t|
-    t.integer  "sid",                        :null => false
-    t.string   "he_name",    :default => ""
-    t.string   "en_name",    :default => ""
-    t.string   "he_desc",    :default => ""
-    t.string   "en_desc",    :default => ""
-    t.string   "lng",                        :null => false
-    t.string   "ltd",                        :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.integer  "sid",                                                         :null => false
+    t.string   "he_name",                                    :default => ""
+    t.string   "en_name",                                    :default => ""
+    t.string   "he_desc",                                    :default => ""
+    t.string   "en_desc",                                    :default => ""
+    t.decimal  "lng",        :precision => 15, :scale => 10, :default => 0.0, :null => false
+    t.decimal  "ltd",        :precision => 15, :scale => 10, :default => 0.0, :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
   end
+
+  add_index "stations", ["sid"], :name => "index_stations_on_sid", :unique => true
 
 end

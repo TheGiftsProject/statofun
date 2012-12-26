@@ -6,9 +6,11 @@ class CreateStations < ActiveRecord::Migration
       t.string :en_name, :default => ''
       t.string :he_desc, :default => ''
       t.string :en_desc, :default => ''
-      t.string :lng, :null => false
-      t.string :ltd, :null => false
+      t.decimal :lng, :precision => 15, :scale => 10, :null => false, :default => 0
+      t.decimal :ltd, :precision => 15, :scale => 10, :null => false, :default => 0
       t.timestamps
     end
+
+    add_index :stations, [:sid], :name => "index_stations_on_sid", :unique => true
   end
 end
