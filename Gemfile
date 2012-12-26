@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "http://rubygems.org"
 
 gem 'rails', '3.2.9'
 
@@ -24,7 +24,8 @@ end
 
 group :development do
   gem 'debugger'
-  gem 'ruby-debug-base19x', '~> 0.11.30.pre10'
+  gem 'linecache19'
+  gem 'ruby-debug-base19x'
   gem 'ruby-debug-ide'
 end
 
