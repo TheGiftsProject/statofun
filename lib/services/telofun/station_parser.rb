@@ -4,7 +4,7 @@ module Telofun
 
     def self.parse_station(station_data)
       {
-        sid:     station_data[:@station_id].to_i,
+        sid:     station_data[:@station_id],
         he_name: station_data[:@station_name],
         en_name: station_data[:@eng_station_name],
         he_desc: station_data[:@description],

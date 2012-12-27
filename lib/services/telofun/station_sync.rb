@@ -1,3 +1,5 @@
+require_relative 'station_parser.rb'
+
 module Telofun
 
   module StationSync
@@ -6,11 +8,11 @@ module Telofun
 
       new_stations_data.each do |raw_data|
 
-        parsed_station = StationParser.parse_station(raw_data)
-        parsed_state   = StationParser.parse_state(raw_data)
+        parsed_station = Telofun::StationParser.parse_station(raw_data)
+        parsed_state   = Telofun::StationParser.parse_state(raw_data)
 
         station = Station.find_or_create_by_sid(parsed_station)
-        station.create_state(parsed_state)
+        station.states.create(parsed_state)
 
       end
 
