@@ -4,15 +4,15 @@ module Telofun
 
     def self.sync(new_stations_data)
 
-      new_stations_data.each do |station_data|
-        sid = station_data[:@station_id]
+      new_stations_data.each do |raw_data|
 
-        station = Station.find_or_created_by_sid(sid)
+        parsed_station = StationParser.parse_station(raw_data)
+        parsed_state   = StationParser.parse_state(raw_data)
+
+        station = Station.find_or_create_by_sid(parsed_station)
+        station.create_state(parsed_state)
+
       end
-
-    end
-
-    def self.exists?(sid)
 
     end
 
