@@ -4,7 +4,6 @@ gem 'rails', '3.2.9'
 
 gem 'pg'
 gem 'savon'
-gem 'nokogiri'
 gem 'rspec'
 
 group :assets do

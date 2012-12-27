@@ -176,7 +176,6 @@ DEPENDENCIES
   factory_girl_rails
   jquery-rails
   linecache19!
-  nokogiri
   pg
   rails (= 3.2.9)
   rspec
