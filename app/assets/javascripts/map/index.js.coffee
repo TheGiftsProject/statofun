@@ -20,4 +20,4 @@ class window.Map
   @show: ->
     new Map().render($("#map_canvas"))
 
-$(document).ready(-> google.maps.event.addDomListener(window, 'load', window.Map.show))
+#$(document).ready(-> google.maps.event.addDomListener(window, 'load', window.Map.show))

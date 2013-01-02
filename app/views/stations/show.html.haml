@@ -1,0 +1,27 @@
+:javascript
+  $(document).ready(function() {
+    $('#ticker').sparkline(#{@station_data[:states]}, {chartRangeMax: #{@station_data[:total_docks]}, width:400});
+  });
+
+%h3= 'Name'
+%p= @station_data[:name]
+
+%h3= 'Lng'
+%p= @station_data[:lng]
+
+%h3= 'Ltd'
+%p= @station_data[:ltd]
+
+%h3= 'Current Bikes'
+%p= @station_data[:current_bikes]
+
+%h3= 'Current Free Docks'
+%p= @station_data[:current_free_docks]
+
+%h3= 'Total Docks'
+%p= @station_data[:total_docks]
+
+%h3= 'Availability History'
+%span#ticker= 'Loading...'
+
+
