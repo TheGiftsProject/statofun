@@ -25,3 +25,5 @@ pickle-email-*.html
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+latest.dump

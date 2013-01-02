@@ -6,6 +6,7 @@ development:
   pool: 5
   username: statofun
   password:
+  template: template0
 
 production:
   adapter: postgresql
@@ -14,6 +15,7 @@ production:
   pool: 5
   username: statofun
   password:
+  template: template0
 
 test:
   adapter: postgresql
@@ -22,3 +24,4 @@ test:
   pool: 5
   username: statofun
   password:
+  template: template0
