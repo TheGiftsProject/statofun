@@ -1,7 +1,8 @@
 :javascript
   $(document).ready(function() {
-    $('#ticker').sparkline(#{@station_data[:states]}, {chartRangeMax: #{@station_data[:total_docks]}, width:400});
+    $('.ticker').sparkline('html', {width:400});
   });
+
 
 %h3= 'Name'
 %p= @station_data[:name]
@@ -22,6 +23,21 @@
 %p= @station_data[:total_docks]
 
 %h3= 'Availability History'
-%span#ticker= 'Loading...'
 
+%p= 'Thursday'
+= render :partial => 'graph', :locals => {:values => @station_data[:station].states_at_day(Time.now - 6.day)}
 
+%p= 'Friday'
+= render :partial => 'graph', :locals => {:values => @station_data[:station].states_at_day(Time.now - 5.day)}
+
+%p= 'Saturday'
+= render :partial => 'graph', :locals => {:values => @station_data[:station].states_at_day(Time.now - 4.day)}
+
+%p= 'Sunday'
+= render :partial => 'graph', :locals => {:values => @station_data[:station].states_at_day(Time.now - 3.day)}
+
+%p= 'Monday'
+= render :partial => 'graph', :locals => {:values => @station_data[:station].states_at_day(Time.now - 2.day)}
+
+%p= 'Tuesday'
+= render :partial => 'graph', :locals => {:values => @station_data[:station].states_at_day(Time.now - 1.day)}

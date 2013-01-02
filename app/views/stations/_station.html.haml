@@ -1,2 +1,3 @@
 = link_to(station.en_name, station)
+= render :partial => 'graph', :locals => {:values => station.states_at_day(Time.now.yesterday)}
 %br

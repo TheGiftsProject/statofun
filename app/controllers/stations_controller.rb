@@ -18,13 +18,10 @@ class StationsController < ApplicationController
       :current_bikes => last_state.available_bikes,
       :current_free_docks => last_state.available_docks,
       :total_docks => last_state.available_bikes + last_state.available_docks,
-      :states => states_at_day(station, Time.now.yesterday)
+      :states => station.states_at_day(Time.now - params[:days].to_i.days),
+      :station => station
     }
     respond_with(@station_data)
-  end
-
-  def states_at_day(station, date = Time.now)
-    station.states.where(:created_at => date.beginning_of_day..date.end_of_day).map(&:available_bikes)
   end
 
 end
