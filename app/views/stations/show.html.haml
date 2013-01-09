@@ -1,5 +1,15 @@
-%div{:data => {:role => 'header'}}= t('stations.show.header', :name => @station_data.name)
+%div{:data => {:role => 'page'}}
+  %div{:data => {:role => 'header'}}
+    %h1= t('stations.show.header', :name => @station_data.name)
 
-%div{:data => {:role => 'content'}}
+  %div{:data => {:role => 'content'}}
+    %ul{:data => {:role => 'listview'}}
+      %li= @station_data.description
+      %li= @station_data.ltd
+      %li= @station_data.lng
+      %li= @station_data.current_bikes
+      %li= @station_data.current_free_docks
+      %li= @station_data.total_docks
 
-%div{:data => {:role => 'footer'}}= t('stations.show.footer', :name => @station_data.name)
+  %div{:data => {:role => 'footer'}}
+    %h1= t('stations.show.footer', :name => @station_data.name)

@@ -16,6 +16,7 @@ class StationsController < ApplicationController
       :name => station.he_name,
       :lng  => station.lng,
       :ltd  => station.ltd,
+      :description => station.he_desc,
       :current_bikes => last_state.available_bikes,
       :current_free_docks => last_state.available_docks,
       :total_docks => last_state.available_bikes + last_state.available_docks,
