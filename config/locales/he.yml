@@ -1,0 +1,6 @@
+he:
+  stations:
+    show:
+      header: "תחנת %{name}"
+      footer: "סטטופן 2012"
+

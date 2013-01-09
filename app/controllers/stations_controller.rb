@@ -12,16 +12,14 @@ class StationsController < ApplicationController
   def show
     station = Station.find(params[:id])
     last_state = station.states.last
-    @station_data = {
-      :name => station.en_name,
+    @station_data = OpenStruct.new({
+      :name => station.he_name,
       :lng  => station.lng,
       :ltd  => station.ltd,
       :current_bikes => last_state.available_bikes,
       :current_free_docks => last_state.available_docks,
       :total_docks => last_state.available_bikes + last_state.available_docks,
-      :states => station.states_at_day(Time.now - params[:days].to_i.days),
-      :station => station
-    }
+    })
     respond_with(@station_data)
   end
 
