@@ -28,6 +28,7 @@ class StationsController < ApplicationController
   def sync
     raw_stations_data = Telofun::API.get_all_stations
     Telofun::StationSyncer.sync(raw_stations_data)
+
     render :nothing => true, :status => :ok
   end
 
