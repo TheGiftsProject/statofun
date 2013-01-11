@@ -6,6 +6,7 @@ gem 'pg'
 gem 'savon'
 
 gem 'haml'
+gem 'configreader'
 
 group :assets do
   gem 'jquery-rails'
