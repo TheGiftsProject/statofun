@@ -1,0 +1,16 @@
+@import 'base/colors.css';
+
+.station-show-page {
+
+  .map-container {
+    max-height: none;
+    height: 150px;
+    padding: 0;
+
+    .map {
+      max-height: none;
+      max-width: none;
+      color:  $teleofun;
+    }
+  }
+}

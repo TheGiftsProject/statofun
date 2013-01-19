@@ -1,8 +1,13 @@
-%div{:data => {:role => 'page'}}
+%div.station-show-page{:data => {:role => 'page'}}
   %div{:data => {:role => 'header'}}
     %h1= t('stations.show.header', :name => @station_data.name)
 
   %div{:data => {:role => 'content'}}
+
+    %ul{:data => {:role => 'listview'}}
+      %li.map-container
+        %img.map{:src => google_static_map(@station_data.ltd, @station_data.lng, 16, 640, 150)}
+
     %ul{:data => {:role => 'listview'}}
       %li= @station_data.description
       %li= @station_data.ltd
