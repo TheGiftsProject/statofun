@@ -15,7 +15,8 @@ module GoogleHelper
         :zoom   => zoom,
         :center => true,
         :size   => "#{width}x#{height}",
-        :markers => "color:green|#{ltd},#{lng}"
+        :markers => "color:green|#{ltd},#{lng}",
+        :language => 'he'
     }
     "http://maps.googleapis.com/maps/api/staticmap?center=#{ltd},#{lng}&#{params.to_query}"
   end
