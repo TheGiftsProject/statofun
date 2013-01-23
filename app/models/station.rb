@@ -6,7 +6,12 @@ class Station < ActiveRecord::Base
 
 
   def self.all_transactions_at_dates(date0 = 1.week.ago, date1 = Time.now)
-    all
+    all.reduce({:taken => 0, :returned => 0}) do |hash, station|
+      result = station.transactions_at_dates(date0, date1)
+      hash[:taken]    += result[:taken]
+      hash[:returned] += result[:returned]
+      hash
+    end
   end
 
   def transactions_at_dates(date0 = 1.week.ago, date1 = Time.now)
