@@ -1,0 +1,5 @@
+.legend-row
+  .icon
+    != @imageTag("/map/#{@type}.png")
+  %span.dot-sep
+  %span= @name || @type

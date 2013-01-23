@@ -1,0 +1,14 @@
+.tab
+  .arrow
+  .arrow
+.container
+  %strong.legend-row= "GO WITH FRIENDS"
+  != @renderPartial("admin/map/templates/legend_row", type: 'wi-user', name: 'Visit')
+  .fix!= @renderPartial("admin/map/templates/legend_row", type: 'redcup-create', name: 'Creation')
+  .fix!= @renderPartial("admin/map/templates/legend_row", type: 'voted', name: 'Vote')
+  %strong.legend-row= "SPLIT PAYMENTS"
+  != @renderPartial("admin/map/templates/legend_row", type: 'sp-user', name: ' StubHub User')
+  != @renderPartial("admin/map/templates/legend_row", type: 'ebay-user', name: 'eBay User')
+  .fix!= @renderPartial("admin/map/templates/legend_row", type: 'create', name: 'Creation')
+  .fix!= @renderPartial("admin/map/templates/legend_row", type: 'paid', name: 'Payment')
+  .fix!= @renderPartial("admin/map/templates/legend_row", type: 'purchase', name: 'Purchase')

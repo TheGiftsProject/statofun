@@ -1,0 +1,7 @@
+%img{:src => '/wi/assets/map/clock.png'}
+%img.hand.minutes{:src => '/wi/assets/map/minhand.png'}
+%img.hand.hours{:src => '/wi/assets/map/hourhand.png'}
+.text.daypart
+.text.date
+.text.timezone
+.dot
