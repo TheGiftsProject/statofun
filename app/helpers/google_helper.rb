@@ -10,12 +10,11 @@ module GoogleHelper
 
   def google_static_map(ltd, lng, zoom = 14, width = 640, height = 640)
     params = {
-        :key    => GOOGLE.api_key,
-        :sensor => false,
-        :zoom   => zoom,
-        :center => true,
-        :size   => "#{width}x#{height}",
-        :markers => "color:green|#{ltd},#{lng}",
+        :key      => GOOGLE.api_key,
+        :sensor   => false,
+        :zoom     => zoom,
+        :size     => "#{width}x#{height}",
+        :markers  => "color:green|#{ltd},#{lng}",
         :language => 'he'
     }
     "http://maps.googleapis.com/maps/api/staticmap?center=#{ltd},#{lng}&#{params.to_query}"
