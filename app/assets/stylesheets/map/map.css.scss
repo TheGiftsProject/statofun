@@ -12,3 +12,126 @@ body {
     width: 100%;
     height: 100%;
 }
+
+//#map {
+//  height:100%;
+//}
+//
+//.controls {
+//  top: 165px;
+//  left: 31px;
+//  position: fixed;
+//
+//  .button {
+//    float: left;
+//    width: 30px;
+//    height: 30px;
+//    margin: 3px;
+//    cursor: pointer;
+//    text-align: center;
+//    line-height: 30px;
+//    background-color: #efefef;
+//    @include box-shadow(1px 1px 3px 0px #3d3d3d);
+//    @include user-select(none);
+//    @include border-radius(3px);
+//
+//    &:hover {
+//      background-color: #b4b4b4;
+//    }
+//
+//    &:active, &.active {
+//      line-height: 31px;
+//      background-color: #b4b4b4;
+//      @include box-shadow(inset 1px 1px 3px 0px #3d3d3d);
+//    }
+//
+//    .mac &{
+//      font-size: 14px;
+//      line-height: 32px;
+//      &:active, &.active{
+//        line-height: 34px;
+//
+//      }
+//    }
+//  }
+//
+//
+//}
+//
+//.clock {
+//  position: fixed;
+//
+//  &.pst {
+//    top: 10px;
+//    left: 10px;
+//  }
+//
+//  &.est {
+//    top: 10px;
+//    right: 10px;
+//  }
+//
+//  .text {
+//    position: absolute;
+//    text-align: center;
+//    font-weight: 600;
+//    color: #17304b;
+//    font-size: 10px;
+//
+//    &.daypart {
+//      top: 42px;
+//      left: 66px;
+//    }
+//
+//    &.date {
+//      width: 61px;
+//      top: 52px;
+//      left: 47px;
+//    }
+//
+//    &.timezone {
+//      top: 97px;
+//      left: 66px;
+//      text-transform: uppercase;
+//    }
+//  }
+//
+//  .dot {
+//    width: 6px;
+//    height: 6px;
+//    border-radius: 3px;
+//    background-color: #ef9425;
+//    top: 72px;
+//    left: 73px;
+//    z-index: 3;
+//    position: absolute;
+//  }
+//
+//  .hand {
+//    position: absolute;
+//    &.minutes {
+//      top: -27px;
+//      left: 69px;
+//      z-index: 2;
+//    }
+//
+//    &.hours {
+//      top: -27px;
+//      left: 69px;
+//      z-index: 1;
+//    }
+//  }
+//}
+//
+//.map-logo{
+//  position: fixed;
+//  top: 23px;
+//  left: 0;
+//  width: 100%;
+//  text-align: center;
+//  z-index: 500;
+//
+//  img {
+//    cursor: pointer;
+//  }
+//}
