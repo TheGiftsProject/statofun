@@ -1,6 +1,6 @@
-class Backbone.Timeline extends Backbone.Model
+class Backbone.Chronos extends Backbone.Model
 
-  # Add description.
+  # Chronos is a live timeline model which ticks in every interval.
   #
   # Noteable Events:
   #   'change:currentTime' - The 'currentTime' has changed (happens after every tick).
@@ -9,8 +9,8 @@ class Backbone.Timeline extends Backbone.Model
 
   defaults:
     currentTime: null   # Current time, a 'moment' object. If not given at creation, uses the 'startTime' property.
-    startTime:   null   # The time at the timeline beginning, a 'moment' object.
-    endTime:     null   # The time at the timeline end, a 'moment' object.
+    startTime:   null   # The time at the timeline beginning, a 'moment' object. This is a mandatory option.
+    endTime:     null   # The time at the timeline end, a 'moment' object. This is an mandatory option.
 
     running:      false # Is the timeline running or not?
     tickInterval: 1000  # Interval between ticks in milliseconds.
@@ -22,7 +22,7 @@ class Backbone.Timeline extends Backbone.Model
 
   initialize: ->
     throw 'Must set a `startTime` option at creation.' if not @get('startTime')
-    throw 'Must set an `endTime` option at creation.'  if not @get('endTime')
+    throw 'Must set a `endTime` option at creation.'   if not @get('endTime')
 
     # Set the 'currentTime' as the 'startTime' if a 'currentTime' option is not given at creation.
     @set('currentTime', @get('startTime')) unless @get('currentTime')
@@ -50,13 +50,17 @@ class Backbone.Timeline extends Backbone.Model
     timePerTick = @get('timePerTick')
     currentTime = @get('currentTime')
     endTime = @get('endTime')
+
+    # Calculate the incremented time.
     newTime = currentTime.add(timePerTick.timeUnit, timePerTick.units)
+
+    # The incremented time cannot be later then 'endTime' (if 'endTime' is set).
     newTime = endTime.clone() if newTime > endTime
 
     @set('currentTime', newTime)
-    console.log(@get('currentTime').format())
 
-    if @get('currentTime') == @get('endTime')
+    # End the timeline if 'currentTime' equals the 'endTime', otherwise keep ticking at the set interval.
+    if @get('currentTime') == endTime
       @trigger('ended')
     else
       @tickTimeout = setTimeout((=> @tick()), @get('tickInterval'))
@@ -65,6 +69,7 @@ class Backbone.Timeline extends Backbone.Model
   # Sets the 'currentTime' to a different time.
   #   time - The time to jump to. A 'moment' object.
   jumpTo: (time) ->
+    # New time must be set between between 'startTime' and 'endTime'
     if time < @get('startTime') or time > @get('endTime')
       throw "New time (#{time.format()}) must be " +
       "between the start time (#{@get('startTime').format()}) " +

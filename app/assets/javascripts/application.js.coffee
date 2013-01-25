@@ -3,4 +3,4 @@
 #= require underscore
 #= require backbone
 #= require moment
-#= require map/models/timeline
+#= require map/models/chronos
