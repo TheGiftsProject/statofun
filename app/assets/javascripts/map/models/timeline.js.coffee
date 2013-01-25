@@ -24,8 +24,6 @@ class Backbone.Timeline extends Backbone.Model
     throw 'Must set a `startTime` option at creation.' if not @get('startTime')
     throw 'Must set an `endTime` option at creation.'  if not @get('endTime')
 
-    _.bind(@tick, @)
-
     # Set the 'currentTime' as the 'startTime' if a 'currentTime' option is not given at creation.
     @set('currentTime', @get('startTime')) unless @get('currentTime')
 
@@ -34,6 +32,7 @@ class Backbone.Timeline extends Backbone.Model
 
   # Stops/pauses the timeline.
   stop: ->
+    clearTimeout(@tickTimeout) if @tickTimeout
     @set('running', false)
 
 
@@ -42,54 +41,58 @@ class Backbone.Timeline extends Backbone.Model
     @set('running', true)
 
 
-  # Sets the 'currentTime' to a different time.
-  #   time - The time to jump to. A 'moment' object.
-  jumpTo: (time) ->
-    if time < @get('startTime') or time > @get('endTime')
-      throw "New time (#{time.format()}) must be " +
-            "between the start time (#{@get('startTime').format()}) " +
-            "and the end time (#{@get('endTime').format()})."
-
-    @stop()
-    @set('currentTime', time.clone())
-    @start()
-
-
   # Increases the 'currentTime' by the 'timePerTick' attribute.
-  # If the 'currentTime' doesn't equal to 'endTime' after the incrementation,
-  # a timeout is set to call the 'tick' method
-  #   options
-  #     force           - If set to 'true', ticks even if the timeline isn't running.
-  #     continueTicking - If set to 'true', the timeline will continut ticking every tick interval.
-  tick: (options = {force: false, continueTicking: true}) ->
-    return unless @get('isRunning') || options.force
+  # If 'currentTime' doesn't equal 'endTime' after the incrementation,
+  # a timeout is set to call the 'tick' method again after the tick interval.
+  tick: ->
+    return unless @get('running')
 
     timePerTick = @get('timePerTick')
-    currentTime = @get('current')
+    currentTime = @get('currentTime')
     endTime = @get('endTime')
     newTime = currentTime.add(timePerTick.timeUnit, timePerTick.units)
     newTime = endTime.clone() if newTime > endTime
 
     @set('currentTime', newTime)
+    console.log(@get('currentTime').format())
 
     if @get('currentTime') == @get('endTime')
       @trigger('ended')
-    else if continueTicking
-      _.delay(@tick, @get('tickInterval'))
+    else
+      @tickTimeout = setTimeout((=> @tick()), @get('tickInterval'))
+
+
+  # Sets the 'currentTime' to a different time.
+  #   time - The time to jump to. A 'moment' object.
+  jumpTo: (time) ->
+    if time < @get('startTime') or time > @get('endTime')
+      throw "New time (#{time.format()}) must be " +
+      "between the start time (#{@get('startTime').format()}) " +
+      "and the end time (#{@get('endTime').format()})."
+
+    @_pauseAndExecute(-> @set('currentTime', time.clone()))
 
 
   # Changes the tick interval.
   #   interval - The tick interval in milliseconds.
   changeInterval: (interval) ->
-    @stop()
-    @set('tickInterval', interval)
-    @start()
+    @_pauseAndExecute(-> @set('tickInterval', interval))
 
 
   # Changes the time per tick configuration of the timeline (how much time passes every tick).
   #   timeUnit - Time unit in 'moment' form (ms, s, m, h, d, w, etc).
   #   units    - How much of the time unit passes every tick.
   changeTimePerTick: (timeUnit, units) ->
-    @stop()
-    @set('timePerTick', {timeUnit: timeUnit, units: units})
-    @start()
+    @_pauseAndExecute(-> @set('timePerTick', {timeUnit: timeUnit, units: units}))
+
+
+  # Pauses the timeline in order to call a function the shouldn't be run while the timeline is running.
+  # Resumes the timeline after the code is executed.
+  #   func - The function to run while the timeline is paused.
+  _pauseAndExecute: (func) ->
+    wasRunning = @get('running')
+
+    @stop() if wasRunning
+    func.call(@)
+    @start() if wasRunning
+
