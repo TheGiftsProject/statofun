@@ -30,7 +30,6 @@ class Backbone.Timeline extends Backbone.Model
     @set('currentTime', @get('startTime')) unless @get('currentTime')
 
     @on('change:running', @tick)
-    @on('change:currentTime', @afterTick)
 
 
   # Stops/pauses the timeline.
@@ -56,10 +55,13 @@ class Backbone.Timeline extends Backbone.Model
     @start()
 
 
-  # Increases the 'currentTime' by the 'timePerTick' attribute
+  # Increases the 'currentTime' by the 'timePerTick' attribute.
+  # If the 'currentTime' doesn't equal to 'endTime' after the incrementation,
+  # a timeout is set to call the 'tick' method
   #   options
-  #     force - If set to 'true', ticks even if the timeline isn't running.
-  tick: (options = {force: false}) ->
+  #     force           - If set to 'true', ticks even if the timeline isn't running.
+  #     continueTicking - If set to 'true', the timeline will continut ticking every tick interval.
+  tick: (options = {force: false, continueTicking: true}) ->
     return unless @get('isRunning') || options.force
 
     timePerTick = @get('timePerTick')
@@ -70,10 +72,9 @@ class Backbone.Timeline extends Backbone.Model
 
     @set('currentTime', newTime)
 
-  afterTick: ->
     if @get('currentTime') == @get('endTime')
       @trigger('ended')
-    else
+    else if continueTicking
       _.delay(@tick, @get('tickInterval'))
 
 
